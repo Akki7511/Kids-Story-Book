@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>KidsStory — Picture Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body class="book-body">
+
+  <!-- ══════════════ BOOK HEADER ══════════════ -->
+  <header class="book-header">
+    <button class="book-back-btn" onclick="goBack()">← Library</button>
+
+    <div class="book-title-area">
+      <span class="book-title-emoji" id="bookTitleEmoji">📖</span>
+      <span class="book-title-text" id="bookTitleText">Loading…</span>
+    </div>
+
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">En</button>
+      <button class="lang-btn"        id="btn-hi" onclick="setLang('hi')">हि</button>
+    </div>
+    <button class="music-toggle-btn" id="musicBtn" onclick="toggleMusic()" title="Toggle music">🔊</button>
+  </header>
+
+  <!-- ══════════════ BOOK STAGE ══════════════ -->
+  <div class="book-stage">
+
+    <!-- Illustration (top area — scene injected here) -->
+    <div class="book-illustration-wrap" id="bookIllustration">
+      <!-- scene HTML injected by reader.js -->
+    </div>
+
+    <!-- Page flip hint arrows (appear on hover/touch) -->
+    <button class="page-flip-arrow left-arrow"  id="arrowLeft"  onclick="prevPage()">‹</button>
+    <button class="page-flip-arrow right-arrow" id="arrowRight" onclick="nextPage()">›</button>
+
+    <!-- Story Text zone -->
+    <div class="book-text-zone">
+      <p class="book-para-text" id="bookParaText">Loading story…</p>
+    </div>
+
+    <!-- ── Controls bar ── -->
+    <div class="book-controls">
+
+      <!-- Progress dots -->
+      <div class="page-dots-row" id="pageDots"></div>
+
+      <!-- Main nav + audio row -->
+      <div class="book-nav-row">
+
+        <!-- Prev -->
+        <button class="book-nav-btn" id="prevBtn" onclick="prevPage()">◀ Prev</button>
+
+        <!-- Centre: play + page count -->
+        <div class="book-centre-controls">
+          <button class="book-play-btn" id="bookPlayBtn" onclick="togglePlay()">
+            <span id="playIcon">▶</span>
+            <span id="playLabel">Listen</span>
+          </button>
+          <div class="book-page-counter">
+            <span id="pageNum">1</span><span class="page-sep">/</span><span id="pageTotal">1</span>
+          </div>
+        </div>
+
+        <!-- Next -->
+        <button class="book-nav-btn book-nav-btn--next" id="nextBtn" onclick="nextPage()">Next ▶</button>
+
+      </div>
+
+      <!-- Speed + Voice (collapsible) -->
+      <div class="book-settings-row">
+        <div class="speed-controls">
+          <button class="speed-btn" onclick="setSpeed(0.7)" data-speed="0.7">🐢 Slow</button>
+          <button class="speed-btn active" onclick="setSpeed(1)"   data-speed="1">⚡ Normal</button>
+          <button class="speed-btn" onclick="setSpeed(1.4)" data-speed="1.4">🚀 Fast</button>
+        </div>
+        <select class="voice-select" id="voiceSelect" onchange="onVoiceChange()">
+          <option>Loading voices…</option>
+        </select>
+      </div>
+
+    </div><!-- /book-controls -->
+
+  </div><!-- /book-stage -->
+
+  <!-- Completion overlay -->
+  <div class="book-complete-overlay" id="bookCompleteOverlay">
+    <div class="book-complete-card">
+      <div class="complete-stars">⭐⭐⭐</div>
+      <h2 id="completeTitle">Story Complete!</h2>
+      <p  id="completeMsg">Amazing! You finished the whole story!</p>
+      <div class="complete-actions">
+        <button class="btn btn-read"   onclick="restartStory()">🔄 Read Again</button>
+        <a class="btn btn-listen" href="index.html">📚 More Stories</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="stories.js"></script>
+  <script src="story-animations.js"></script>
+  <script src="characters.js"></script>
+  <script src="audio-engine.js"></script>
+  <script src="scene-renderer.js"></script>
+  <script src="reader.js"></script>
+</body>
+</html>

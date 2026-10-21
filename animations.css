@@ -1,0 +1,244 @@
+/* animations.css — KidsStory animated scenes */
+
+/* ===== BASE SCENE CONTAINER ===== */
+.anim-scene {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* Emoji character base */
+.anim-e {
+  position: absolute;
+  line-height: 1;
+  display: block;
+  transform-origin: center bottom;
+}
+
+/* Ground strip overlay */
+.anim-ground-strip {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  border-radius: 0 0 16px 16px;
+}
+
+/* Water fill inside pot */
+.anim-water-fill {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  background: #4EC3E0;
+  border-radius: 0 0 6px 6px;
+  animation: anim-water-rise 4s ease-in-out infinite alternate;
+}
+
+/* Ripple rings */
+.anim-ripple-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(78, 195, 224, 0.6);
+  animation: anim-ripple 1.5s ease-out infinite;
+}
+
+/* ===== KEYFRAMES ===== */
+
+/* Gentle breathing / sleeping bob */
+@keyframes anim-breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-6px) scale(1.04); }
+}
+
+/* Bubble floats upward then fades */
+@keyframes anim-float-up {
+  0%   { transform: translateY(0) scale(0.7); opacity: 0; }
+  25%  { opacity: 0.9; }
+  100% { transform: translateY(-50px) scale(1.1); opacity: 0; }
+}
+
+/* Walk left → right across scene (handles left property) */
+@keyframes anim-ltr {
+  0%   { left: -12%; opacity: 0; transform: scaleX(1); }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: 112%; opacity: 0; transform: scaleX(1); }
+}
+
+/* Walk right → left */
+@keyframes anim-rtl {
+  0%   { left: 112%; opacity: 0; transform: scaleX(-1); }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: -12%; opacity: 0; transform: scaleX(-1); }
+}
+
+/* Pulse scale */
+@keyframes anim-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.14); }
+}
+
+/* Twinkle opacity */
+@keyframes anim-twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85) rotate(0deg); }
+  50%       { opacity: 1;    transform: scale(1.15) rotate(25deg); }
+}
+
+/* Bounce */
+@keyframes anim-bounce {
+  0%, 100% { transform: translateY(0) scaleX(1); }
+  30%       { transform: translateY(-18px) scaleX(0.93); }
+  60%       { transform: translateY(0) scaleX(1.05); }
+}
+
+/* Hare: sprint to middle then flop sideways (sleeping) */
+@keyframes anim-hare {
+  0%        { left: -5%;  transform: scaleX(1)   rotate(0deg);  }
+  28%       { left: 56%;  transform: scaleX(1)   rotate(0deg);  }
+  35%, 100% { left: 56%;  transform: scaleX(1)   rotate(90deg); }
+}
+
+/* Tortoise plods all the way across */
+@keyframes anim-tortoise {
+  0%   { left: -5%; }
+  100% { left: 90%; }
+}
+
+/* Crow arc: off-top → down to pot → back up */
+@keyframes anim-fly-arc {
+  0%        { bottom: 95%; left: 62%; transform: rotate(-20deg); opacity: 0; }
+  12%       { opacity: 1; }
+  38%, 62%  { bottom: 46%; left: 56%; transform: rotate(5deg);  opacity: 1; }
+  88%       { opacity: 1; }
+  100%      { bottom: 95%; left: 62%; transform: rotate(-20deg); opacity: 0; }
+}
+
+/* Pebble falls into pot */
+@keyframes anim-pebble {
+  0%,  10% { transform: translateY(-22px); opacity: 0; }
+  30%, 85% { transform: translateY(0);     opacity: 1; }
+  95%, 100%{ transform: translateY(0);     opacity: 0; }
+}
+
+/* Water rises inside pot */
+@keyframes anim-water-rise {
+  0%   { height: 6px;  }
+  100% { height: 30px; }
+}
+
+/* Magic sparkle burst around character */
+@keyframes anim-sparkle {
+  0%   { transform: scale(0) rotate(0deg);   opacity: 0; }
+  40%  { transform: scale(1.4) rotate(130deg); opacity: 1; }
+  70%  { transform: scale(1) rotate(220deg);  opacity: 0.7; }
+  100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+/* Dress / character glow transform */
+@keyframes anim-transform-glow {
+  0%, 25%  { filter: grayscale(1) brightness(0.5); transform: scale(1);   }
+  55%      { filter: grayscale(0) brightness(1.4); transform: scale(1.2); }
+  75%, 100%{ filter: grayscale(0) brightness(1);   transform: scale(1);   }
+}
+
+/* Pumpkin jiggle → morph */
+@keyframes anim-pumpkin-morph {
+  0%, 30%  { transform: scale(1)   rotate(0deg);  }
+  50%      { transform: scale(1.5) rotate(12deg); filter: brightness(1.6) hue-rotate(200deg); }
+  70%, 100%{ transform: scale(1.2) rotate(0deg);  filter: brightness(1)   hue-rotate(0deg);  }
+}
+
+/* Wolf creeps from right edge toward center */
+@keyframes anim-wolf-sneak {
+  0%        { left: 110%; opacity: 0; }
+  10%       { opacity: 1; }
+  45%, 100% { left: 56%;  opacity: 1; }
+}
+
+/* Sheep bolt leftward */
+@keyframes anim-sheep-bolt {
+  0%   { left: 38%; opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: -12%; opacity: 0; }
+}
+
+/* Boy shouts (scale bob) */
+@keyframes anim-shout {
+  0%, 100% { transform: scale(1)    translateY(0); }
+  50%       { transform: scale(1.1) translateY(-5px); }
+}
+
+/* Sound ripple ring */
+@keyframes anim-ripple {
+  0%   { transform: scale(0.4); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0;   }
+}
+
+/* Seed / sprout growing from soil */
+@keyframes anim-sprout-grow {
+  0%   { font-size: 0.5em; opacity: 0;   bottom: 22%; }
+  20%  { opacity: 1; }
+  100% { font-size: 2.6em; opacity: 1;   bottom: 22%; }
+}
+
+/* Sunflower sway */
+@keyframes anim-sway {
+  0%, 100% { transform: rotate(-6deg) translateY(0);  }
+  50%       { transform: rotate(6deg)  translateY(-4px); }
+}
+
+/* Sun slow rotation */
+@keyframes anim-sun-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Gentle float */
+@keyframes anim-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-9px); }
+}
+
+/* Wand wave */
+@keyframes anim-wand {
+  0%, 100% { transform: rotate(-35deg); }
+  50%       { transform: rotate(20deg); }
+}
+
+/* Cloud drift */
+@keyframes anim-cloud-drift {
+  0%   { left: -10%; }
+  100% { left: 110%; }
+}
+
+/* Night stars twinkle */
+@keyframes anim-star-blink {
+  0%, 90%, 100% { opacity: 0.25; transform: scale(0.8);  }
+  45%            { opacity: 1;    transform: scale(1.2);  }
+}
+
+/* Carriage glow */
+@keyframes anim-carriage-glow {
+  0%, 100% { filter: brightness(1);    }
+  50%       { filter: brightness(1.4) drop-shadow(0 0 8px gold); }
+}
+
+/* Shake side to side (caught, trapped, angry) */
+@keyframes anim-shake {
+  0%, 100% { transform: translateX(0) rotate(0deg);   }
+  20%       { transform: translateX(-6px) rotate(-4deg); }
+  40%       { transform: translateX(6px)  rotate(4deg);  }
+  60%       { transform: translateX(-4px) rotate(-2deg); }
+  80%       { transform: translateX(4px)  rotate(2deg);  }
+}
+
+/* Grass wave */
+@keyframes anim-grass-wave {
+  0%, 100% { transform: rotate(0deg); transform-origin: bottom center; }
+  50%       { transform: rotate(8deg); transform-origin: bottom center; }
+}

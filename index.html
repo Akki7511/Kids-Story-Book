@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KidsStory — Read & Listen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-area">
+        <span class="logo-emoji">📚</span>
+        <div class="logo-text">
+          <h1>KidsStory</h1>
+          <span>Read & Listen · पढ़ो और सुनो</span>
+        </div>
+      </a>
+
+      <!-- Language Toggle -->
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">English</button>
+        <button class="lang-btn" id="btn-hi" onclick="setLang('hi')">हिंदी</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-emoji-row">
+        <span>🦁</span>
+        <span>📖</span>
+        <span>✨</span>
+        <span>🌟</span>
+        <span>🐢</span>
+      </div>
+      <h2 id="heroTitle">Choose Your Adventure!</h2>
+      <p id="heroSubtitle">Pick a story, read along, or press play and listen. Switch between English and Hindi anytime!</p>
+    </section>
+
+    <!-- SEARCH -->
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        class="search-input"
+        id="searchInput"
+        placeholder="Search stories..."
+        oninput="filterStories()"
+        autocomplete="off"
+      >
+    </div>
+
+    <!-- FILTER TABS -->
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">
+        All Stories
+      </button>
+      <button class="filter-btn" data-filter="4-7" onclick="setFilter('4-7', this)">
+        Ages 4–7
+      </button>
+      <button class="filter-btn" data-filter="5-9" onclick="setFilter('5-9', this)">
+        Ages 5–9
+      </button>
+      <button class="filter-btn" data-filter="5-10" onclick="setFilter('5-10', this)">
+        Ages 5–10
+      </button>
+    </div>
+
+    <!-- STORIES GRID -->
+    <div class="stories-grid" id="storiesGrid">
+      <!-- Cards injected by JS -->
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="emptyState">
+      <p>🔍 No stories found. Try a different search!</p>
+    </div>
+
+  </main>
+
+  <script src="stories.js"></script>
+  <script src="story-animations.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
